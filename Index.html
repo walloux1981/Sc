@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Star Citizen - Calculateur de Points</title>
+<style>
+body {
+    background: radial-gradient(circle at top, #0a0f1f, #000);
+    font-family: Arial, sans-serif;
+    color: #00ffff;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(0,0,0,0.8);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 0 20px #00ffff;
+}
+
+select, input {
+    padding: 10px;
+    margin: 10px;
+    background: #111;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+}
+
+button {
+    padding: 12px 20px;
+    background: #00ffff;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    box-shadow: 0 0 15px #00ffff;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 24px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🚀 Star Citizen - Calculateur</h1>
+
+    <label>Arme :</label><br>
+    <select id="arme">
+        <option value="10">Pistolet - 10 pts</option>
+        <option value="20">Fusil - 20 pts</option>
+        <option value="30">Sniper - 30 pts</option>
+    </select><br>
+
+    <label>Kills :</label><br>
+    <input type="number" id="kills" value="0"><br>
+
+    <label>
+        <input type="checkbox" id="headshot"> Headshot (+5 pts par kill)
+    </label><br>
+
+    <button onclick="calculer()">Calculer</button>
+
+    <div class="result">
+        Total : <span id="total">0</span> pts
+    </div>
+</div>
+
+<script>
+function calculer() {
+    let pointsArme = parseInt(document.getElementById("arme").value);
+    let kills = parseInt(document.getElementById("kills").value);
+    let headshot = document.getElementById("headshot").checked;
+
+    let total = pointsArme * kills;
+
+    if(headshot) {
+        total += 5 * kills;
+    }
+
+    document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
+</html>
